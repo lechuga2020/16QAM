@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use ieee.std_logic_arith.all; 
+use ieee.std_logic_unsigned.all;
+PACKAGE myTypes IS
+	constant n_int_bits: integer:= 9; 
+	constant n_fix_bits: integer:= 9; 
+	constant n_total_bits: integer:= n_int_bits+n_fix_bits; -- n y esta constante son la misma,
+	--la puse para no modifcar archivos que pudieran usar n. 
+	constant n: integer:= n_total_bits;
+	constant F: integer:= 100e6; 
+	constant UART_Freq_Rx: integer:= 4800; 
+	constant UART_Freq_Tx: integer:= 4800; 
+	constant UART_bits: integer:= 8; 
+	type myString is array(0 to 21) of character;
+	type arreglo3 is array(0 to 2) of character;
+	
+	type lista2 is array(0 to 1) of std_logic_vector(n-1 downto 0); 
+	type lista4 is array(0 to 3) of std_logic_vector(n-1 downto 0);
+	type lista5 is array(0 to 4) of std_logic_vector(n-1 downto 0);
+	type lista6 is array(0 to 5) of std_logic_vector(n-1 downto 0);
+	
+	constant seconds_ticks: integer:= 50e6; 
+	constant temp: integer:= 434;--esta constante es usada por el BT_HANLDER 
+END myTypes;
+
+package body myTypes is
+end; 

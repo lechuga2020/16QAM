@@ -1,0 +1,39 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_arith.all;
+use IEEE.std_logic_unsigned.all;
+use work.myTypes.all;
+
+entity Tx_Module is 
+	generic(n_bits_Tx: integer:= 8; 
+		     ticks_UART: integer:= 434);
+	port(rst: in std_logic; 
+		  clk: in std_logic; 
+		  start_tx: in std_logic; 
+		  Tx_ out std_logic; 
+		  eof_tx: out std_logic);
+end entity
+
+
+architecture struct of Tx_Module is 
+
+component UART_tx is 
+	generic(n_bits_Tx: integer:= 8; 
+			  ticks_UART: integer:= 434);
+	port(rst: in std_logic; 
+		  clk: in std_logic; 
+		  start_tx: in std_logic; 
+		  in_buffer: in std_logic_vector(n_bits_Tx-1 downto 0); 
+		  Tx: out std_logic; 
+		  eof_tx: out std_logic); 
+end component; 
+
+signal buffer_to_uartTx: Std_logic_vector(n_bits_Tx-1 downto 0); 
+
+begin 
+	 
+	UTx: UarT_tx generic map(n_bits_Tx, ticks_UART) port map(rst, clk, start_tx, 
+		buffer_to_uartTx, Tx, eof_tx);
+
+
+end architecture;  
